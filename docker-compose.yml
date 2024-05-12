@@ -3,7 +3,7 @@ services:
   vprodb:
     build: 
       context: ./Docker-files/db
-    image: vprocontainers/vprofiledb
+    image: sonako2000/raf-vprofile-db
     container_name: vprodb
     ports:
       - "3306:3306"
@@ -12,12 +12,12 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=vprodbpass
 
-  vprocache01:
+  vpro-memcache01:
     image: memcached
     ports:
       - "11211:11211"
 
-  vpromq01:
+  vpro-rabbitmq01:
     image: rabbitmq
     ports:
       - "15672:15672"
@@ -28,7 +28,7 @@ services:
   vproapp:
     build: 
       context: ./Docker-files/app
-    image: vprocontainers/vprofileapp
+    image: sonako2000/raf-vprofile-app
     container_name: vproapp
     ports:
       - "8080:8080"
@@ -38,7 +38,7 @@ services:
   vproweb:
     build: 
       context: ./Docker-files/web
-    image: vprocontainers/vprofileweb
+    image: sonako2000/raf-vprofile-web
     container_name: vproweb
     ports:
       - "80:80"
